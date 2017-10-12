@@ -31,7 +31,8 @@ public class Game {
 		if (pick == null) throw new IllegalArgumentException("Pick cannot be negative.");
 		if (bet < 0) throw new IllegalArgumentException("Bet cannot be negative.");
 		
-		player.takeBet(bet);
+		//for bug1 (3.) Changing the bet taking place
+		//player.takeBet(bet);
 		    
 		int matches = 0;
 		for ( Dice d : dice) {
@@ -42,9 +43,16 @@ public class Game {
 		}
 		
 		int winnings = matches * bet;
-
+		
+		//==== for bug1 ( 1.) checking the wining amount and matches are calculating correct
+		System.out.println("win amount = "+winnings);
+		System.out.println("win matches = "+matches);
 		if (matches > 0) {			
 			player.receiveWinnings(winnings);
+		} else {
+			//for bug1 (4.) Update the bet taking place
+			// only if they player lost the game otherwise unless we shouldn't take the bet
+			player.takeBet(bet);
 		}
         return winnings;		
 	}

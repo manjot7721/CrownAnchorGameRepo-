@@ -8,14 +8,16 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		
 	   BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-
-        Dice d1 = new Dice();
-        Dice d2 = new Dice();
-        Dice d3 = new Dice();
-
-        Player player = new Player("Fred", 100);
-        Game game = new Game(d1, d2, d3);
-        List<DiceValue> cdv = game.getDiceValues();
+       //Player player = new Player("Fred", 100, 17); //for bug5 tests
+	   Player player = new Player("Fred", 100, 18);
+        
+        //for bug3 (1.)
+        //Dice d1 = new Dice();
+        //Dice d2 = new Dice();
+        //Dice d3 = new Dice();
+        //Game game = new Game(d1, d2, d3);
+        //List<DiceValue> cdv = game.getDiceValues();
+        //System.out.println("cdv list = "+cdv.toString());
 
         int totalWins = 0;
         int totalLosses = 0;
@@ -29,8 +31,9 @@ public class Main {
             {
             	String name = "Fred";
             	int balance = 100;
+            	int playersAge = 18;
             	int limit = 0;
-                player = new Player(name, balance);
+                player = new Player(name, balance, playersAge);
                 player.setLimit(limit);
                 int bet = 5;
 
@@ -47,7 +50,17 @@ public class Main {
                 	System.out.printf("Turn %d: %s bet %d on %s\n",
                 			turn, player.getName(), bet, pick); 
                 	
+                	//for bug3 (2.) change the get Dice init place
+                	Dice d1 = new Dice();
+                    Dice d2 = new Dice();
+                    Dice d3 = new Dice();
+                    
+                	Game game = new Game(d1, d2, d3);
                 	int winnings = game.playRound(player, pick, bet);
+
+                	//for bug3 (3.) change the get Dice getDiceValues place
+                	List<DiceValue> cdv = game.getDiceValues();
+                    //System.out.println("cdv list = "+cdv.toString());
                     cdv = game.getDiceValues();
                     
                     System.out.printf("Rolled %s, %s, %s\n",
